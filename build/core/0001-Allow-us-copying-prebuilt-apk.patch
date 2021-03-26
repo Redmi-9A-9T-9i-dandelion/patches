@@ -1,0 +1,27 @@
+From 02e2b3b415bff1e2d6010569d99ddbd1e2a4b082 Mon Sep 17 00:00:00 2001
+From: ImFatF1sh <zijianjiao2017@gmail.com>
+Date: Thu, 25 Mar 2021 22:06:26 +0800
+Subject: [PATCH] Allow us copying prebuilt apk
+
+Signed-off-by: ImFatF1sh <zijianjiao2017@gmail.com>
+Change-Id: Iff818d7f21bac91be0862d3559f183284573c7f5
+---
+ core/Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/core/Makefile b/core/Makefile
+index a5eef489f..a4363775d 100644
+--- a/core/Makefile
++++ b/core/Makefile
+@@ -15,7 +15,7 @@ LOCAL_PATH := $(BUILD_SYSTEM)
+ #$(2): the dest
+ define check-product-copy-files
+ $(if $(filter-out $(TARGET_COPY_OUT_SYSTEM_OTHER)/%,$(2)), \
+-  $(if $(filter %.apk, $(2)),$(error \
++  $(if $(filter %.apk, $(2)),$(warning \
+      Prebuilt apk found in PRODUCT_COPY_FILES: $(1), use BUILD_PREBUILT instead!)))
+ endef
+ # filter out the duplicate <source file>:<dest file> pairs.
+-- 
+2.25.1
+
