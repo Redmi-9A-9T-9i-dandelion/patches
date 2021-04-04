@@ -1,0 +1,31 @@
+From f4373eef2f2a6b9273ad7ad03f5e013e0261438d Mon Sep 17 00:00:00 2001
+From: ImFatF1sh <zijianjiao2017@gmail.com>
+Date: Mon, 5 Apr 2021 00:25:22 +0800
+Subject: [PATCH] fixup! dandelion: opp: Constants: Import from stock
+
+Signed-off-by: ImFatF1sh <zijianjiao2017@gmail.com>
+Change-Id: Ia90f8f966ce372a088be38aa32bdb2410ae96a15
+---
+ src/com/android/bluetooth/opp/Constants.java | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/src/com/android/bluetooth/opp/Constants.java b/src/com/android/bluetooth/opp/Constants.java
+index 3bf6cde..97fda59 100644
+--- a/src/com/android/bluetooth/opp/Constants.java
++++ b/src/com/android/bluetooth/opp/Constants.java
+@@ -194,6 +194,12 @@ public class Constants {
+             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+             "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+             "application/x-hwp",
++            "application/vnd.android.package-archive",
++            "application/x-flac",
++            "application/epub+zip",
++            "application/ogg",
++            "text/comma-separated-values",
++            "*/*",
+     };
+ 
+     /** Where we store received files */
+-- 
+2.25.1
+
