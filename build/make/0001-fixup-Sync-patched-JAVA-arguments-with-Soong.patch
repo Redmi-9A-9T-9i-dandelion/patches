@@ -1,0 +1,31 @@
+From 5d3ef792072088f606cc046ef7fe798e618b7dd6 Mon Sep 17 00:00:00 2001
+From: ImFatF1sh <zijianjiao2017@gmail.com>
+Date: Mon, 12 Apr 2021 23:00:46 +0800
+Subject: [PATCH] fixup! Sync patched JAVA arguments with Soong
+
+out/soong/make_vars-lineage_dandelion.mk:448: warning: JAVA does not match between Make and Soong:
+out/soong/make_vars-lineage_dandelion.mk:448: warning: Make : prebuilts/jdk/jdk11/linux-x86/bin/java -XX:OnError="cat hs_err_pid%p.log" -XX:CICompilerCount=6 -XX:+UseDynamicNumberOfGCThreads
+out/soong/make_vars-lineage_dandelion.mk:448: warning: Soong: prebuilts/jdk/jdk11/linux-x86/bin/java -XX:OnError="cat hs_err_pid%p.log" -Xmx12288m -XX:CICompilerCount=6 -XX:+UseDynamicNumberOfGCThreads
+In file included from build/make/core/cleanbuild.mk:30:
+out/soong/make_vars-lineage_dandelion.mk:1037: error: Soong variable check failed.
+
+Signed-off-by: ImFatF1sh <zijianjiao2017@gmail.com>
+Change-Id: I0887afd4c5269984d45cc3c1d748d52a6a537fdd
+---
+ core/combo/javac.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/core/combo/javac.mk b/core/combo/javac.mk
+index 32a5c9e..5049c54 100644
+--- a/core/combo/javac.mk
++++ b/core/combo/javac.mk
+@@ -16,5 +16,5 @@ ANDROID_JAVA_TOOLCHAIN := $(ANDROID_JAVA_HOME)/bin
+ 
+ # TODO(ccross): remove this, it is needed for now because it is used by
+ # config.mk before makevars from soong are loaded
+-JAVA := $(ANDROID_JAVA_TOOLCHAIN)/java -XX:OnError="cat hs_err_pid%p.log" -XX:CICompilerCount=6 -XX:+UseDynamicNumberOfGCThreads
++JAVA := $(ANDROID_JAVA_TOOLCHAIN)/java -XX:OnError="cat hs_err_pid%p.log" -Xmx12288m -XX:CICompilerCount=6 -XX:+UseDynamicNumberOfGCThreads
+ 
+-- 
+2.25.1
+
