@@ -1,0 +1,41 @@
+From d05221643b141fe99f254480b4a50d754bcab294 Mon Sep 17 00:00:00 2001
+From: ImFatF1sh <zijianjiao2017@gmail.com>
+Date: Mon, 12 Apr 2021 18:36:36 +0800
+Subject: [PATCH] Allow us building on a 8GB RAM machine
+
+Signed-off-by: ImFatF1sh <zijianjiao2017@gmail.com>
+Change-Id: I8e07464092ee21db1da7486323ef958da578c8e5
+---
+ core/config.mk                    | 2 +-
+ tools/droiddoc/test/stubs/func.sh | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/core/config.mk b/core/config.mk
+index c9efa11..a15d074 100644
+--- a/core/config.mk
++++ b/core/config.mk
+@@ -672,7 +672,7 @@ EXTRACT_KERNEL := build/make/tools/extract_kernel.py
+ # Path to tools.jar
+ HOST_JDK_TOOLS_JAR := $(ANDROID_JAVA8_HOME)/lib/tools.jar
+ 
+-APICHECK_COMMAND := $(JAVA) -Xmx4g -jar $(APICHECK) --no-banner --compatible-output=yes
++APICHECK_COMMAND := $(JAVA) -Xmx12g -jar $(APICHECK) --no-banner --compatible-output=yes
+ 
+ # Boolean variable determining if the allow list for compatible properties is enabled
+ PRODUCT_COMPATIBLE_PROPERTY := false
+diff --git a/tools/droiddoc/test/stubs/func.sh b/tools/droiddoc/test/stubs/func.sh
+index ea4fe75..0920512 100644
+--- a/tools/droiddoc/test/stubs/func.sh
++++ b/tools/droiddoc/test/stubs/func.sh
+@@ -36,7 +36,7 @@ function build_stubs()
+         LD_LIBRARY_PATH=out/host/$PLATFORM/lib \
+         javadoc \
+             \@$OBJ_DIR/javadoc-src-list \
+-            -J-Xmx512m \
++            -J-Xmx12288m \
+             -J-Djava.library.path=out/host/$PLATFORM/lib \
+              \
+             -quiet \
+-- 
+2.25.1
+
