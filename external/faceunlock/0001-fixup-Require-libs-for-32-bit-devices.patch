@@ -1,4 +1,4 @@
-From b8d545baed6bc57b64dea345e8864b9020e02ed2 Mon Sep 17 00:00:00 2001
+From ebd439dfe79e5f31933cf48e44635482c66e4493 Mon Sep 17 00:00:00 2001
 From: ImFatF1sh <zijianjiao2017@gmail.com>
 Date: Sat, 17 Apr 2021 14:36:24 +0800
 Subject: [PATCH] fixup! Require libs for 32-bit devices
@@ -27,22 +27,29 @@ E FaceService: Binder died, cancelling client
 Signed-off-by: ImFatF1sh <zijianjiao2017@gmail.com>
 Change-Id: I236160a230563204ff827479378801388ef08294
 ---
- dependencies/Android.bp | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ dependencies/Android.bp | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/dependencies/Android.bp b/dependencies/Android.bp
-index e27361d..3655962 100644
+index e27361d..6aae731 100644
 --- a/dependencies/Android.bp
 +++ b/dependencies/Android.bp
-@@ -9,7 +9,7 @@ cc_library {
+@@ -9,11 +9,12 @@ cc_library {
          "-Werror",
          "-Wno-unused-parameter",
      ],
 -    compile_multilib: "64",
-+    compile_multilib: "both",
++    compile_multilib: "first",
      required: [
          "libFaceDetectCA",
          "libmegface",
+         "libMegviiUnlock",
+         "libMegviiUnlock-jni-1.2",
+     ],
+-}
+\ No newline at end of file
++}
++
 -- 
-2.25.1
+2.24.3 (Apple Git-128)
 
