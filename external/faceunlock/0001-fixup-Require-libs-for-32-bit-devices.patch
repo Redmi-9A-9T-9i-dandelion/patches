@@ -1,0 +1,55 @@
+From ebd439dfe79e5f31933cf48e44635482c66e4493 Mon Sep 17 00:00:00 2001
+From: ImFatF1sh <zijianjiao2017@gmail.com>
+Date: Sat, 17 Apr 2021 14:36:24 +0800
+Subject: [PATCH] fixup! Require libs for 32-bit devices
+
+--------- beginning of crash
+E AndroidRuntime: FATAL EXCEPTION: com.crdroid.faceunlock.service.FaceAuthService
+E AndroidRuntime: Process: com.crdroid.faceunlock, PID: 13006
+E AndroidRuntime: java.lang.UnsatisfiedLinkError: dlopen failed: library "libMegviiUnlock-jni-1.2.so" not found
+E AndroidRuntime: 	at java.lang.Runtime.loadLibrary0(Runtime.java:1087)
+E AndroidRuntime: 	at java.lang.Runtime.loadLibrary0(Runtime.java:1008)
+E AndroidRuntime: 	at java.lang.System.loadLibrary(System.java:1664)
+E AndroidRuntime: 	at com.megvii.facepp.sdk.jni.LiteApi.<clinit>(LiteApi.java:63)
+E AndroidRuntime: 	at com.megvii.facepp.sdk.jni.LiteApi.nativeInitHandle(Native Method)
+E AndroidRuntime: 	at com.megvii.facepp.sdk.Lite.initHandle(Lite.java:48)
+E AndroidRuntime: 	at com.megvii.facepp.sdk.Lite.initHandle(Lite.java:42)
+E AndroidRuntime: 	at com.crdroid.faceunlock.vendor.FacePPImpl.init(FacePPImpl.java:48)
+E AndroidRuntime: 	at com.crdroid.faceunlock.vendor.FacePPImpl.saveFeatureStart(FacePPImpl.java:130)
+E AndroidRuntime: 	at com.crdroid.faceunlock.service.FaceAuthService$FaceAuthServiceWrapper.lambda$enroll$0$FaceAuthService$FaceAuthServiceWrapper(FaceAuthService.java:454)
+E AndroidRuntime: 	at com.crdroid.faceunlock.service.-$$Lambda$FaceAuthService$FaceAuthServiceWrapper$mBFB0WuSvpk3dwCZ4rHxomrgjhM.run(Unknown Source:2)
+E AndroidRuntime: 	at android.os.Handler.handleCallback(Handler.java:938)
+E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:99)
+E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:223)
+E AndroidRuntime: 	at android.os.HandlerThread.run(HandlerThread.java:67)
+E FaceService: Binder died, cancelling client
+
+Signed-off-by: ImFatF1sh <zijianjiao2017@gmail.com>
+Change-Id: I236160a230563204ff827479378801388ef08294
+---
+ dependencies/Android.bp | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/dependencies/Android.bp b/dependencies/Android.bp
+index e27361d..6aae731 100644
+--- a/dependencies/Android.bp
++++ b/dependencies/Android.bp
+@@ -9,11 +9,12 @@ cc_library {
+         "-Werror",
+         "-Wno-unused-parameter",
+     ],
+-    compile_multilib: "64",
++    compile_multilib: "first",
+     required: [
+         "libFaceDetectCA",
+         "libmegface",
+         "libMegviiUnlock",
+         "libMegviiUnlock-jni-1.2",
+     ],
+-}
+\ No newline at end of file
++}
++
+-- 
+2.24.3 (Apple Git-128)
+
